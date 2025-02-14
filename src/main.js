@@ -54,11 +54,7 @@ const initData = () => {
   currentScore = 0;
   activePlayer = 0;
   // init DOM elements
-  console.log(sectionPlayer0, "sectionPlayer0");
-  console.log(score0, "score0");
-  console.log(score1, "score1");
-  console.log(currentScore0, "currentScore0");
-  console.log(currentScore1, "currentScore1");
+  imgDice.classList.add("hidden");
   score0.textContent = 0;
   score1.textContent = 0;
   currentScore0.textContent = 0;
@@ -66,3 +62,34 @@ const initData = () => {
 };
 
 initData();
+
+btnRoll.addEventListener("click", () => {
+  const dice = Math.trunc(Math.random() * 6) + 1;
+  imgDice.src = `dice-${dice}.png`;
+  imgDice.classList.remove("hidden");
+
+  if (dice !== 1) {
+    currentScore += dice;
+    document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+  } else {
+    currentScore = 0;
+    document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    sectionPlayer0.classList.toggle("player--active");
+    sectionPlayer1.classList.toggle("player--active");
+  }
+}
+);
+
+btnHold.addEventListener("click", () => {
+  score[activePlayer] += currentScore;
+  document.querySelector(`#score--${activePlayer}`).textContent = score[activePlayer];
+  currentScore = 0;
+  document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  sectionPlayer0.classList.toggle("player--active");
+  sectionPlayer1.classList.toggle("player--active");
+}
+);
+
+btnNew.addEventListener("click", initData);
