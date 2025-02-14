@@ -59,6 +59,14 @@ const initData = () => {
   score1.textContent = 0;
   currentScore0.textContent = 0;
   currentScore1.textContent = 0;
+  document.querySelector(`#name--0`).textContent = "Player 1";
+  document.querySelector(`#name--1`).textContent = "Player 2";
+  sectionPlayer0.classList.remove("player--winner");
+  sectionPlayer1.classList.remove("player--winner");
+  sectionPlayer0.classList.add("player--active");
+  sectionPlayer1.classList.remove("player--active");
+  btnRoll.disabled = false;
+  btnHold.disabled = false;
 };
 
 initData();
