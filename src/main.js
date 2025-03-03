@@ -78,28 +78,33 @@ btnRoll.addEventListener("click", () => {
 
   if (dice !== 1) {
     currentScore += dice;
-    document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+    document.querySelector(`#current--${activePlayer}`).textContent =
+      currentScore;
   } else {
     currentScore = 0;
-    document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+    document.querySelector(`#current--${activePlayer}`).textContent =
+      currentScore;
     activePlayer = activePlayer === 0 ? 1 : 0;
     sectionPlayer0.classList.toggle("player--active");
     sectionPlayer1.classList.toggle("player--active");
   }
-}
-);
+});
 
 btnHold.addEventListener("click", () => {
   score[activePlayer] += currentScore;
-  document.querySelector(`#score--${activePlayer}`).textContent = score[activePlayer];
+  document.querySelector(`#score--${activePlayer}`).textContent =
+    score[activePlayer];
   currentScore = 0;
-  document.querySelector(`#current--${activePlayer}`).textContent = currentScore;
+  document.querySelector(`#current--${activePlayer}`).textContent =
+    currentScore;
 
   if (score[activePlayer] >= 100) {
     document.querySelector(`#name--${activePlayer}`).textContent = "Winner!";
     imgDice.classList.add("hidden");
     //and change the css of the winner player player
-    document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add("player--winner");
     btnRoll.disabled = true;
     btnHold.disabled = true;
   } else {
